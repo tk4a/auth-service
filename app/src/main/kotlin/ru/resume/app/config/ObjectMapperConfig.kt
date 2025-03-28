@@ -1,11 +1,11 @@
 package ru.resume.app.config
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @Configuration
-class PasswordEncoderConfig {
+class ObjectMapperConfig {
     @Bean
-    fun passwordEncoder() = BCryptPasswordEncoder()
+    fun objectMapper() = ObjectMapper()
 }

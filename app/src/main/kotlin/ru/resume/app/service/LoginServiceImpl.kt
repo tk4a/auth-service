@@ -1,17 +1,18 @@
 package ru.resume.app.service
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.stereotype.Service
 import ru.resume.app.dto.LoginRequest
 import ru.resume.app.dto.LoginResponse
 
 @Service
-class LoginServiceImpl(private val jwtService: JwtService, private val authenticationManager: AuthenticationManager) : LoginService {
+class LoginServiceImpl(private val jwtService: JwtService) : LoginService {
+    private val log: Logger = LoggerFactory.getLogger(this::class.java)
+    
     override fun doLogin(request: LoginRequest): ResponseEntity<LoginResponse> {
-        authenticationManager.authenticate(UsernamePasswordAuthenticationToken(request.username, request.password))
-        val token = jwtService.generateToken(request.username)
-        return ResponseEntity.ok(LoginResponse(token))
+        log.info("Get request for login with body: $request")
+        return ResponseEntity.ok(LoginResponse(jwtService.generateToken(request.email)))
     }
 }

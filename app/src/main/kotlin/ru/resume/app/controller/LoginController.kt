@@ -11,5 +11,5 @@ import ru.resume.app.service.LoginService
 @RestController
 class LoginController(private val loginService: LoginService) {
     @PostMapping("/login")
-    fun sign(@RequestBody request: LoginRequest): ResponseEntity<LoginResponse> = loginService.doLogin(request)
+    fun login(@RequestBody request: LoginRequest): ResponseEntity<LoginResponse> = loginService.doLogin(request)
 }
