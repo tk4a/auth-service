@@ -23,7 +23,7 @@ class JwtAuthenticationFilter(
 ) : OncePerRequestFilter() {
     private val log: Logger = LoggerFactory.getLogger(this::class.java)
 
-    override fun shouldNotFilter(request: HttpServletRequest): Boolean = "/sign-up" == request.requestURI
+    override fun shouldNotFilter(request: HttpServletRequest): Boolean = "/sign-up" == request.requestURI || request.requestURI.contains("/actuator")
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
         val contentCachingRequestWrapper = CachedBodyHttpServletRequest(request)

@@ -41,6 +41,7 @@ class SecurityConfig(
                 auth
                     .requestMatchers(HttpMethod.POST, "/sign-up").permitAll()
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                     .anyRequest().authenticated()
             }
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
