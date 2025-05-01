@@ -1,18 +1,24 @@
 package ru.resume.app.service
 
+import kotlinx.coroutines.reactive.awaitFirst
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import ru.resume.app.dto.SignUpRequest
+import ru.resume.api.signup.SignUpRequest
+import ru.resume.api.signup.SignUpResponse
 import ru.resume.app.mapper.toUser
-import ru.resume.app.repository.UserRepository
+import ru.resume.app.repository.RocketUserRepository
 
 @Service
-class SignUpServiceImpl(private val userRepository: UserRepository) : SignUpService {
+class SignUpServiceImpl(
+    private val repository: RocketUserRepository,
+    private val jwtService: JwtService
+    ) : SignUpService {
     private val log: Logger = LoggerFactory.getLogger(this::class.java)
 
-    override fun signUp(request: SignUpRequest) {
+    override suspend fun signUp(request: SignUpRequest): SignUpResponse {
         log.info("Get request to sign up with body: $request")
-        request.toUser().let { userRepository.save(it) }
+        repository.save(request.toUser()).awaitFirst()
+        return SignUpResponse(jwtService.generateToken(request.email))
     }
 }

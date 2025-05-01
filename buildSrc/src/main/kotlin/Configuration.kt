@@ -1,5 +1,4 @@
 const val GROUP_NAME = "ru.resume"
-const val PROJECT_NAME = "app"
 const val VERSION = "1.0-SNAPSHOT"
 
 object Version {
@@ -8,9 +7,10 @@ object Version {
     const val SPRING = "3.2.0"
     const val DEPENDENCY_MANAGEMENT = "1.1.4"
     const val JSON_WEB_TOKEN = "0.11.5"
+    const val R2DBC_POSTGRESQL = "0.8.10.RELEASE"
 }
 
-val modules = listOf(Module("$GROUP_NAME.app", "app", VERSION))
+val modules = listOf(Module("$GROUP_NAME.app", "app", VERSION), Module("$GROUP_NAME.api", "api", VERSION))
 
 fun getModuleByName(name: String) = modules.first { it.name == name }
 

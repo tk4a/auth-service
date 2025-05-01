@@ -1,9 +1,8 @@
 package ru.resume.app.service
 
-import org.springframework.http.ResponseEntity
-import ru.resume.app.dto.LoginRequest
-import ru.resume.app.dto.LoginResponse
+import ru.resume.api.login.LoginRequest
+import ru.resume.api.login.LoginResponse
 
 interface LoginService {
-    fun doLogin(request: LoginRequest): ResponseEntity<LoginResponse>
+    fun doLogin(request: LoginRequest): LoginResponse
 }

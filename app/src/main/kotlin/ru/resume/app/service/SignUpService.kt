@@ -1,7 +1,8 @@
 package ru.resume.app.service
 
-import ru.resume.app.dto.SignUpRequest
+import ru.resume.api.signup.SignUpRequest
+import ru.resume.api.signup.SignUpResponse
 
 interface SignUpService {
-    fun signUp(request: SignUpRequest)
+    suspend fun signUp(request: SignUpRequest): SignUpResponse
 }

@@ -1,6 +1,4 @@
-plugins {
-    kotlin("jvm") version Version.KOTLIN
-}
+plugins { kotlin("jvm") version Version.KOTLIN }
 
 group = GROUP_NAME
 version = VERSION

@@ -1,13 +1,21 @@
 package ru.resume.app.mapper
 
-import ru.resume.app.dto.SignUpRequest
-import ru.resume.app.entity.ResumeUser
-import java.util.UUID
+import ru.resume.api.user.UserResponseDto
+import ru.resume.api.signup.SignUpRequest
+import ru.resume.app.entity.RocketUser
 
 fun SignUpRequest.toUser() =
-        ResumeUser(
-            UUID.randomUUID().toString(),
-            this.username,
+        RocketUser(
+            null,
+            this.email,
             this.password,
-            this.email
+            "",
+            "",
+            ""
         )
+
+fun RocketUser.toUserResponseDto() =
+    UserResponseDto(
+        this.email,
+        this.password
+    )
